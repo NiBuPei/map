@@ -63,9 +63,9 @@ export default {
     };
   },
   mounted() {
-    this.bus.$on((msg) => {
-      this.isCollapse = msg;
-    });
+    // this.bus.$on((msg) => {
+    //   this.isCollapse = msg;
+    // });
   },
   computed: {
     onRoutes() {

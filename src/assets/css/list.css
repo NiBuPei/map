@@ -1,0 +1,18 @@
+.table{
+    margin-top: 10px;
+}
+
+.h-input{
+    padding: 4px;
+    height: 40px;
+}
+
+.page{
+    margin-top: 5px;  
+    float: right;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active{
+    background: #1eb9ce;
+    color: #fff;
+}

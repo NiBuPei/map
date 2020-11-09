@@ -5,3 +5,30 @@
 .left{
     float: left;
 }
+
+.main{
+    width: 100%;
+    height: 100%;
+    margin: 1%;
+    padding: 1%;
+    box-shadow: #eee 0 0 8px 5px;
+}
+
+.p-l10{
+    padding-left: 10px;
+}
+
+.m-l10{
+    margin-left: 10px;
+}
+
+.btn-ck{
+    color: #fff;
+    background: #69c7d3;
+    cursor: pointer;
+}
+
+.btn-ck:hover{
+    color: #fff;
+    background: #1eb9ce;
+}

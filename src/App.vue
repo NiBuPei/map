@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'App'
 }
@@ -14,5 +15,6 @@ export default {
   #app{
     width: 100%;
     height: 100%;
+    font-size: 14px;
   }
 </style>

@@ -1,176 +1,55 @@
 <template>
   <el-main class="main">
     <div class="h-input">
-      <div class="left p-l10">
+      <div class="left p-l10" v-show="radio==='table'">
         <el-input
           v-model="input"
           placeholder="请输入账户名称"
           size="small"
         ></el-input>
       </div>
-      <el-button class="left m-l10 btn-ck" :loading="loading" size="small"
+      <el-button v-show="radio==='table'"
+        class="left m-l10 btn-ck"
+        icon="el-icon-search"
+        :loading="loading"
+        size="small"
         >搜索</el-button
       >
+      <div class="right">
+        <el-radio-group v-model="radio" size="small" fill="#1eb9ce">
+          <el-radio-button label="photo">图</el-radio-button>
+          <el-radio-button label="table">表</el-radio-button>
+        </el-radio-group>
+      </div>
     </div>
-    <div class="table">
-      <el-table :data="tableData" style="width: 100%" size="small">
-        <el-table-column fixed prop="time" label="日期" width="150">
-        </el-table-column>
-        <div v-for="(item, index) in titleData" :key="index">
-          <el-table-column
-            :prop="item.prop"
-            :label="item.name"
-            width=""
-          ></el-table-column>
-        </div>
-
-        <el-table-column fixed="right" label="操作" width="100">
-          <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small"
-              >查看</el-button
-            >
-            <el-button type="text" size="small" disabled>删除</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <el-pagination
-        class="page"
-        background
-        layout="prev, pager, next"
-        :total="totalPage"
-        :current-page="pageindex"
-        :page-sizes="[10, 20, 50, 100]"
-        :page-size="PageSize"
-        @size-change="sizeChange()"
-        @current-change="currentChange()"
-        small
-      >
-      </el-pagination>
+    <div>
+      <div v-show="radio==='photo'">
+        <Photo></Photo>
+      </div>
+      <div v-show="radio==='table'">
+        <Table></Table>
+      </div>
     </div>
   </el-main>
 </template>
 
 <script>
+import Table from '@/components/table'
+import Photo from '@/components/photo'
 import "../../assets/css/list.css";
 
 export default {
   data() {
     return {
-      pageindex: 1,
-      PageSize: 5,
-      totalPage: 0,
+      radio:"photo",
       input: "",
-      loading: false,
-      value1: "",
-      value2: "",
-      titleData: [
-        {
-          prop: "user",
-          name: "操作账户",
-        },
-        {
-          prop: "content",
-          name: "操作内容",
-        },
-      ],
-      pickerOptions: {
-        shortcuts: [
-          {
-            text: "最近一周",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit("pick", [start, end]);
-            },
-          },
-          {
-            text: "最近一个月",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-              picker.$emit("pick", [start, end]);
-            },
-          },
-          {
-            text: "最近三个月",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-              picker.$emit("pick", [start, end]);
-            },
-          },
-        ],
-      },
-
-      tableData: [
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          time: "2016-05-02",
-          user: "王小虎",
-          content: "上海市普陀区金沙江路 1518 弄",
-        },
-      ],
+      loading: false, 
     };
   },
-  methods: {
-    handleClick(row) {
-      console.log(row);
-    },
-    currentChange(val) {
-      this.PageSize = val;
-      this.pageindex = 1;
-    },
-    sizechange(val) {
-      this.pageindex = val;
-    },
-  },
+  components:{
+    Table,
+    Photo
+  }
 };
 </script>
 

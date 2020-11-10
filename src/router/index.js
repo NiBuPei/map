@@ -9,29 +9,39 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: ()=>import('../views/home'),
-      children:[
+      component: () => import('../views/home'),
+      children: [
         {
           path: '/dashboard',
           name: 'dashboard',
-          component: ()=>import('../views/dashboard/index'),
+          component: () => import('../views/dashboard/index'),
         },
         {
           path: '/permissionsindex',
           name: 'permissionsindex',
-          component: ()=>import('../views/permissions/index'),
+          component: () => import('../views/permissions/index'),
         },
         {
           path: '/log',
           name: 'log',
-          component: ()=>import('../views/log/index'),
+          component: () => import('../views/log/index'),
         },
         {
           path: '/statisticalindex',
           name: 'statisticalindex',
-          component: ()=>import('../views/statistical/index'),
+          component: () => import('../views/statistical/index'),
         },
       ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/login'),
+    },
+    {
+      path: '/error',
+      name: 'error',
+      component: () => import('../views/error'),
     },
   ]
 })
